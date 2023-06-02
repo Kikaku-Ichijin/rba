@@ -1,35 +1,18 @@
-name: Aliyun Signin
-
-on:
-  schedule:
-   # 每天国际时间 14:40 运行一次, 中国时间 22:40
-    - cron: '40 14 * * *'
-  workflow_dispatch:
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
 jobs:
-  signin:
-    name: Aliyun Signin
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: ImYrS/aliyun-auto-signin@main
-        with:
-          REFRESH_TOKENS: ${{ secrets.REFRESH_TOKENS }}
-          GP_TOKEN: ${{ secrets.GP_TOKEN}}
-          PUSH_TYPES: ''
-          DO_NOT_REWARD: 'false'
-          SERVERCHAN_SEND_KEY: ${{ secrets.SERVERCHAN_SEND_KEY }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-          PUSHPLUS_TOPIC: ${{ secrets.PUSHPLUS_TOPIC }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_TLS: ${{ secrets.SMTP_TLS }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_SENDER: ${{ secrets.SMTP_SENDER }}
-          SMTP_RECEIVER: ${{ secrets.SMTP_RECEIVER }}
-          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          CQHTTP_ENDPOINT: ${{ secrets.CQHTTP_ENDPOINT }}
-          CQHTTP_USER_ID: ${{ secrets.CQHTTP_USER_ID }}
-          CQHTTP_ACCESS_TOKEN: ${{ secrets.CQHTTP_ACCESS_TOKEN }}
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
